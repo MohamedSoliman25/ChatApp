@@ -37,18 +37,7 @@ class ChatViewModel @Inject constructor(
 
     fun sendMessage(fromUserId: String, toUserId: String, content: String) {
         val timestamp = Date()
-//       val message = ChatMessage(content = content, fromUserId = fromUserId, toUserId = toUserId, timestamp = getDateFormat())
-//        viewModelScope.launch {
-//            chatRepository.insertMessage(message)
-//        }
         webSocketService.sendMessage(fromUserId, toUserId, content,timestamp)
     }
 
-//    private fun getDateFormat():String{
-//        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-//        val date = SimpleDateFormat("MMMM d, yyyy h:mm:ss a", Locale.ENGLISH)
-//        return dateFormat.format(date)
-//        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss",Locale.getDefault())
-//       return SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(simpleDateFormat.parse("2022/02/01 14:23:05")!!)
-//    }
 }
