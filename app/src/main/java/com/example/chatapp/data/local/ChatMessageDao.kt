@@ -12,6 +12,6 @@ interface ChatMessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMessage(chatMessage: ChatMessage)
 
-    @Query("SELECT * FROM chat_messages WHERE fromUserId LIKE:fromUserId AND toUserId LIKE:toUserId ORDER BY timestamp Desc")
+    @Query("SELECT * FROM chat_messages WHERE (fromUserId LIKE:fromUserId AND toUserId LIKE:toUserId) OR  (fromUserId LIKE:toUserId AND toUserId LIKE:fromUserId) ORDER BY timestamp Desc")
     fun getAllMessages(fromUserId:String,toUserId:String): Flow<List<ChatMessage>>
 }
